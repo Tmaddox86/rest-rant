@@ -5,14 +5,14 @@ router.get('/', (req, res)=> {
 })
 
 let places = [{
-    name: Amy,
-    city: Cleveland,
-    state: Ohio,
-    cuisines: Pasta,
-    pic: https://th.bing.com/th/id/R.12a4ff7fbb6747c52f19e626532e0962?rik=9cozqsSzi%2bY8Zg&riu=http%3a%2f%2fwallsdesk.com%2fwp-content%2fuploads%2f2017%2f01%2fPasta-Desktop.jpg&ehk=6LUPdhXpJznEWTZwBhI%2f01AGLud5Sd4TbMHVhpSqwB8%3d&risl=&pid=ImgRaw&r=0,
+    name: 'Amy',
+    city: 'Cleveland',
+    state: 'Ohio',
+    cuisines: 'Pasta',
+    pic: 'https://th.bing.com/th/id/R.12a4ff7fbb6747c52f19e626532e0962?rik=9cozqsSzi%2bY8Zg&riu=http%3a%2f%2fwallsdesk.com%2fwp-content%2fuploads%2f2017%2f01%2fPasta-Desktop.jpg&ehk=6LUPdhXpJznEWTZwBhI%2f01AGLud5Sd4TbMHVhpSqwB8%3d&risl=&pid=ImgRaw&r=0,'
 }]
 
-app.get('/', (req,res)=>) {
+app.get('/', (req,res)=> {
     let places = [{
             name: 'H-Thai-ML',
             city: 'Seattle',
@@ -28,10 +28,14 @@ app.get('/', (req,res)=>) {
           }]
         
 res.render('places/index')
-        }
+        })
 router.post('/', (req, res) => {
     res.send('POST /places stub')
 })
+router.get('/new', (req, res) => {
+    res.render('places/new')
+  })
+  
 router.get('/new', (req, res) => {
     res.send('GET /places/new stub')
 })
