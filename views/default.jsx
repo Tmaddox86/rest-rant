@@ -1,9 +1,11 @@
 const React = require('react')
-function DEF (HTML) {
+function Def (html) {
         return (
             <html>
                 <head>
                     <title>Title</title>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"/>
+                    <link rel="stylsheet" href="/css/style.css"/>
                 </head>
                 <body>
                     {html.children}
@@ -11,5 +13,5 @@ function DEF (HTML) {
             </html>
         )
       }
-      
-module.exports = DEF
+
+module.exports = Def
