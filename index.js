@@ -21,3 +21,6 @@ app.get('*', (req, res) => {
 
 // Listen for Connections
 app.listen(process.env.PORT)
+
+app.use(express.urlencoded({ extended: true }))
+
