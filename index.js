@@ -27,6 +27,8 @@ app.get('*', (req, res) => {
 });
 
 // Listen for Connections
-app.listen(process.env.PORT)
+app.listen(PORT, () => {
+    console.log(`Listening on port:${PORT}`);
+});
 
 
