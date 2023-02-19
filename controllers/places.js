@@ -44,12 +44,38 @@ router.post('/', (req, res) => {
       
   
 router.get('/new', (req, res) => {
-    res.render('GET /places/new')
+    res.render('places/new')
 })
 
 router.get('/:id', (req, res) => {
-    res.send('GET /places/:id')
+  let id = Number( req.params.id)
+  if (isNaN(id)){
+    res, render('error404')
+  }
+  else if (!places[id]) {
+    res.render('error404')
+  }
+  else {
+    res.render('places/show',{ place: places[id]})
+  }
 })
+
+
+
+
+
+const React = require('react')
+const Def = require('../default')
+
+function show () {
+    return (
+        <Def>
+          <main>
+            <h1>Show Page</h1>
+          </main>
+        </Def>
+    )
+}
 
 router.put('/:id', (req, res) => {
     res.send('PUT /places/:id')
@@ -72,6 +98,7 @@ router.delete('/:id/rant/:rantId', (req, res) => {
 })
 
 module.exports = router
+module.exports = show
 
 
 
