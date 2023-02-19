@@ -3,15 +3,6 @@ const places = require('../models/places.js')
 const React = require('react')
 const Def = require('../default')
 
-function show () {
-  return (
-      <Def>
-        <main>
-          <h1>Show Page</h1>
-        </main>
-      </Def>
-  )
-}
 
 let places = [{
     name: 'Amy',
@@ -35,7 +26,7 @@ app.get('/', (req,res)=> {
             cuisines: 'Coffee, Bakery',
             pic: 'http://placekitten.com/250/250'
           }] 
-          res.render('places/index',{places})
+          res.render('GET /places/index stub',{places})
         })
 
 router.post('/', (req, res) => {
@@ -50,7 +41,7 @@ router.post('/', (req, res) => {
           req.body.state = 'USA'
         }
         places.push(req.body)
-        res.redirect('POST /places')
+        res.redirect('POST /places stub')
       })
 
 router.get('/new', (req, res) => {
@@ -66,7 +57,7 @@ router.get('/:id', (req, res) => {
     res.render('error404')
   }
   else {
-    res.render('places/show',{ place: places[id], id})
+    res.render('GET /places/show',{ place: places[id], id})
   }
 });
 
@@ -136,6 +127,15 @@ router.put('/:id', (req, res) => {
 )
 
 
+  function show () {
+  return (
+      <Def>
+        <main>
+          <h1>Show Page</h1>
+        </main>
+      </Def>
+  )
+}
 
 
 
