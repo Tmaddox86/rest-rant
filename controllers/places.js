@@ -60,10 +60,6 @@ router.get('/:id', (req, res) => {
   }
 })
 
-
-
-
-
 const React = require('react')
 const Def = require('../default')
 
@@ -92,21 +88,43 @@ router.delete('/:id', (req, res) => {
     else {
       places.splice(id, 1)
       res.redirect('/places')
-      res.send('STUB DELETE /places/:id')
+      res.render('STUB DELETE /places/:id')
     }
     })
 
 router.get('/:id/edit', (req, res) => {
-    res.send('GET /places/:id/edit')
-})
+  let id = Number( req.params.id);
+  if (isNaN(id)){
+    res, render('error404');
+  }
+  else if (!places[id]) {
+    res.render('error404');
+  }
+  else {
+    res.render('places/edit', { place: places[id], id});
+  }
+});
 
 router.post('/:id/rant', (req, res) => {
-    res.send('GET /places/:id/rant')
-})
+    res.send('GET /places/:id/rant');
+});
 
-router.delete('/:id/rant/:rantId', (req, res) => {
-    res.send('GET /places/:id/rant/:rantId')
-})
+router.delete('/:id/edit', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)){
+    res.render('error404')
+  }
+  else if (!places[id]){
+    res.render('error404')
+  }
+  else {
+    places.splice(id, 1)
+    res.redirect('/places')
+    res.render('STUB DELETE /places/:id/edit')
+  }
+});
+
+
 
 module.exports = router
 module.exports = show
