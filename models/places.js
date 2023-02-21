@@ -9,10 +9,37 @@ const placeSchema = new mongoose.Schema({
     cuisines: { type: String, required: true},
     city: { type: String, default: 'Anytown'},
     state: { type: String, default: 'USA'},
-    founded: Number,
+    founded: Number
 })
 
-module.exports = mongoose.model('Place', placeSchema)
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true, useUnifiedTopology: true},
+    ()=> {console.log('connected to mongo:', process.env.MONGO_URI)}),
+
+router.get('/', (req, res)=> {
+    db.Place.find()
+    .then((places)=>{
+        res.render('places/index', { places})
+    })
+    .catch(err => {
+        console.log(err)
+        res.render('error404')
+    })
+})
+
+router.post('/', (req, res) => {
+    db.Place.create(req.body)
+    .then(()=>{
+        res.redirect('/places')
+    })
+    .catch(err => {
+        console.log('err', err)
+        res.render('error404')
+    })
+  })                                      
+  
+
+module.exports.Place = require('./places')
 
 
 

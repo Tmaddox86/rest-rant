@@ -12,7 +12,7 @@ let places = [{
     pic: 'https://th.bing.com/th/id/R.12a4ff7fbb6747c52f19e626532e0962?rik=9cozqsSzi%2bY8Zg&riu=http%3a%2f%2fwallsdesk.com%2fwp-content%2fuploads%2f2017%2f01%2fPasta-Desktop.jpg&ehk=6LUPdhXpJznEWTZwBhI%2f01AGLud5Sd4TbMHVhpSqwB8%3d&risl=&pid=ImgRaw&r=0,'
 }]
 
-app.get('/', (req,res)=> {
+router.get('/', (req,res)=> {
     let places = [{
             name: 'H-Thai-ML',
             city: 'Seattle',
@@ -26,7 +26,7 @@ app.get('/', (req,res)=> {
             cuisines: 'Coffee, Bakery',
             pic: 'http://placekitten.com/250/250'
           }] 
-          res.render('GET /places/index stub',{places})
+          res.send('GET /places stub')
         })
 
 router.post('/', (req, res) => {
@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
           req.body.state = 'USA'
         }
         places.push(req.body)
-        res.redirect('POST /places stub')
+        res.send('POST /places stub')
       })
 
 router.get('/new', (req, res) => {
@@ -57,7 +57,7 @@ router.get('/:id', (req, res) => {
     res.render('error404')
   }
   else {
-    res.render('GET /places/show',{ place: places[id], id})
+    res.send('GET /places/:id stub')
   }
 });
 
@@ -76,7 +76,7 @@ router.delete('/:id', (req, res) => {
     }
     })
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id', (req, res) => {
   let id = Number( req.params.id);
   if (isNaN(id)){
     res, render('error404');
@@ -85,11 +85,11 @@ router.get('/:id/edit', (req, res) => {
     res.render('error404');
   }
   else {
-    res.render('places/edit', { place: places[id], id});
+    res.render('places', { place: places[id], id});
   }
 });
 
-router.delete('/:id/edit', (req, res) => {
+router.delete('/:id/rant/:rantId', (req, res) => {
   let id = Number(req.params.id)
   if (isNaN(id)){
     res.render('error404')
@@ -100,12 +100,12 @@ router.delete('/:id/edit', (req, res) => {
   else {
     places.splice(id, 1)
     res.redirect('/places')
-    res.render('STUB DELETE /places/:id/edit')
+    res.send('DELETE /places/:id stub')
   }
 });
 
-router.post('/:id/edit', (req, res) => {
-    res.send('GET /places/:id/edit');
+router.post('/:id/rant', (req, res) => {
+    res.send('GET /places/:id/rant stub');
 });
 
 router.put('/:id', (req, res) => {
@@ -122,7 +122,7 @@ router.put('/:id', (req, res) => {
       }
 // Save the new data into places[id]
       places[id] = req.body
-      res.redirect(`/places/${id}`)
+      res.send('PUT /places/:id stub')
   }
 )
 
