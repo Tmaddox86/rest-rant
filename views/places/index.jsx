@@ -19,12 +19,13 @@ function index (data) {
     return (
       <Def>
           <main>
-              <h1>PLACES to rant or rave about</h1>
-              <div clasName="row"> {placesFormatted}
+              <h1>PLACES to Rant or Rave About</h1>
+              <div clasName="row">
+                 {placesFormatted}
               </div>
           </main>
       </Def>
   )
   }
-  module.exports = index
+  module.exports = index()
   
