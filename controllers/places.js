@@ -1,16 +1,7 @@
 const router = require('express').Router()
 const places = require('../models/places.js')
 const React = require('react')
-const Def = require('../default')
 
-
-let places = [{
-    name: 'Amy',
-    city: 'Cleveland',
-    state: 'Ohio',
-    cuisines: 'Pasta',
-    pic: "C:\Users\TMadd\Downloads\Garlic-Parmesan-Pasta.jpg"
-}]
 
 router.get('/', (req,res)=> {
     let places = [{
@@ -127,20 +118,10 @@ router.put('/:id', (req, res) => {
 )
 
 
-  function show () {
-  return (
-      <Def>
-        <main>
-          <h1>Show Page</h1>
-        </main>
-      </Def>
-  )
-}
-
 
 
 module.exports = router
-module.exports = show
+
 
 
 

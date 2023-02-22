@@ -17,9 +17,9 @@ db.Place.create([{
 }])
 .then(() => {
     console.log('Success!')
-    ProcessingInstruction.exit()
+    process.exit()
 })
 .catch(err => {
     console.log('Failure!',err)
-    ProcessingInstruction.exit()
+    process.exit()
 })

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-const router = required('express').Router()
-const db = require('../models')
+
 //const { Schema } = mongoose
 
 const placeSchema = new mongoose.Schema({
@@ -12,11 +11,11 @@ const placeSchema = new mongoose.Schema({
     founded: Number
 })
 
-mongoose.connect(process.env.MONGO_URI, {
+/*mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true, useUnifiedTopology: true},
-    ()=> {console.log('connected to mongo:', process.env.MONGO_URI)}),
+    ()=> {console.log('connected to mongo:', process.env.MONGO_URI)}),*/
 
-router.get('/', (req, res)=> {
+/*router.get('/', (req, res)=> {
     db.Place.find()
     .then((places)=>{
         res.render('places/index', { places})
@@ -36,10 +35,10 @@ router.post('/', (req, res) => {
         console.log('err', err)
         res.render('error404')
     })
-  })                                      
+  }) */                                     
   
-
-module.exports.Place = require('./places')
+const Place= mongoose.model("Place", placeSchema)
+module.exports= Place
 
 
 
