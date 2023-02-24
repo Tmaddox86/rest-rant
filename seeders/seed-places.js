@@ -1,4 +1,4 @@
-const db = require('./models')
+const db = require('../models')
 
 db.Place.create([{
     name: 'H-Thai-ML',
@@ -23,3 +23,4 @@ db.Place.create([{
     console.log('Failure!',err)
     process.exit()
 })
+module.exports.Place = require('./places')

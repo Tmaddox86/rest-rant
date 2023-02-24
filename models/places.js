@@ -36,7 +36,10 @@ router.post('/', (req, res) => {
         res.render('error404')
     })
   }) */                                     
-  
+
+placeSchema.methods.showEstablished = function(){
+    return `${this.name} has been serving ${this.city}, ${this.state} since ${this.founded}.`
+}
 const Place= mongoose.model("Place", placeSchema)
 module.exports= Place
 
