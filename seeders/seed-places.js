@@ -1,5 +1,5 @@
 const db = require('../models')
-
+db.Comment.create()
 db.Place.create([{
     name: 'H-Thai-ML',
     city: 'Seattle',
