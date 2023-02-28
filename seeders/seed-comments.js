@@ -5,23 +5,22 @@ async function seed() {
 
     let place = await db.Place.findOne({ name: 'H-Thai-ML' })
 
-    // Create a fake sample comment.
+// Create a fake sample comment.
     let comment = await db.Comment.create({
         author: 'Famished Fran',
         rant: false,
         stars: 5.0,
         content: 'Wow, simply amazing! Highly recommended!'
-    })
-    db.Comment.push;
-
-    // Add that comment to the place's comment array.
-    place.comment.push(comment.id)
+    });
+    
+// Add that comment to the place's comment array.
+    place.comment.push(comment.id);
 
     //save the place now that it has comment
-    await place.save()
+    await place.save();
     
-    // Exit the program
-    process.exit()
+// Exit the program
+    process.exit();
 }
 
 seed()

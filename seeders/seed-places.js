@@ -1,5 +1,6 @@
 const db = require('../models')
 db.Comment.create()
+
 db.Place.create([{
     name: 'H-Thai-ML',
     city: 'Seattle',
@@ -23,4 +24,5 @@ db.Place.create([{
     console.log('Failure!',err)
     process.exit()
 })
+
 module.exports.Place = require('./places')

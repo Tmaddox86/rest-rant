@@ -1,11 +1,12 @@
 const React = require('react')
+
 function Def (html) {
         return (
             <html>
                 <head>
                     <title>Title</title>
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"/>
-                    <link rel="stylsheet" href="../css/style.css"/>
+                    <link rel="stylsheet" href="/css/style.css"/>
                 </head>
                 <body>
                     <nav>
@@ -21,7 +22,7 @@ function Def (html) {
                             </li>
                         </ul>
                     </nav>
-                    {html.children}
+                        {html.children}
                 </body>
             </html>
         )

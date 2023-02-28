@@ -1,63 +1,99 @@
 const React = require('react')
 const Def = require('../default')
 
- 
-<a href= "{`/places/${data.id}/edit`}" className="btn btn-warning"> Edit </a>
-//cant find soultion for part 4
-<form method="POST" action= "" id="Author"> </form>
-
-<form action= {`/places/${data.id}?_method=DELETE`} method="POST">
-<button type="submit" className="btn btn-danger"> Delete </button>
-</form>
 //<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-function show (data) {
-    let comments = (
-      <h3 className="inactive"> No comments yet! </h3>
+function show ({place}) {
+  let comments = (
+    <h3 className="inactive"> No Comments Yet! </h3>
+  )
+  let rating = (
+    <h3 className="inactive"> No Rated Yet! </h3>
+  )
+  if (place.comments.length) {
+    let sumRating = place.comments.reduce((tot,c) => {
+      return tot + c.stars
+    }, 0)
+    let averageRating = Math.round (sumRating / place.comments.length)
+    let stars = '';
+    for ( let i = 0; i < averageRating; i++) {
+      stars += '*'
+    } 
+    rating = (
+      <h3> 
+      {stars} stars  
+      { Math.round (averageRating) } stars 
+      </h3>
     )
-    function show (data) {
-      let comments = (
-        <h3 className="inactive">
-          No comments yet!
-        </h3>
-      )
-      if (data.place.comments.length) {
-        comments = data.place.comments.map(c => {
-          return (
-            <div className="border">
-              <h2 className="rant">{c.rant ? 'Rant! ðŸ˜¡' : 'Rave! ðŸ˜»'}</h2>
-              <h4>{c.content}</h4>
-              <h3> <stong> - {c.author} </stong> </h3>
-              <h4>Rating: {c.stars}</h4>
-            </div>
-          )
-        })
-      }
-    }
+    comments = place.comments.map( c=> {
+      return (
+          <div key = { index }>
+            <h2 className="rant mt-2">
+              {c.rant ? 'Rant!' : 'Rave!'}
+            </h2>
+            <h3> <stong> - {c.author} </stong> </h3>
+            <h4>{c.content}</h4>
+            <h4>Rating: {c.stars}</h4>
+            <form action= {`/places/${place.id}/comment/${c.id}?_method=DELETE`} method="POST">
+              <input className="mb-2 btn btn-danger" type= "submit" value = "Delete"></input>
+            </form>
+          </div>
+    )})
   
-    return (
-        <Def>
-          <main>
-          <div className="row">
-          <div className="col-sm-6">
-          <img src={data.place.pic} alt={data.place.name} />
-            <h1> { data.place.name } </h1>
-            <h2> Comments </h2>
-            {comments}
-            <h3> Located in {data.place.city}, {data.place.state} </h3>
-          </div>
-          </div>
-          <div className="col-sm-6">
-            <h2> Description </h2>
-            <h3> {data.place.showEstablished()} </h3>
-            <h4> Serving {data.place.cuisines} </h4>
-          </div>
-       </main>
-     </Def>)}
+return (     
+    <Def>
+        <main>
+              <div className="row">
+                <div className="col-sm-6">
+                  <img src={place.pic} alt={place.name} />
+                  <h3> Located in {place.city}, {place.state} </h3>
+                </div>
+              </div>
+              <div className="col-sm-6">
+                <h2> Description </h2>
+                <h3> {place.showEstablished()} </h3>
+                <h2>Rating</h2>
+                  {rating}
+                <h4> Serving {data.place.cuisines} </h4>
+                  <a href= {`/places/${place._id}/edit`} className= "btn btn-warning"> Edit </a>
+                    <form method= "POST" action= {`/places/${place._id}?_method=DELETE`}>
+                      <button type= "submit" className="btn btn-danger"> Delete </button>
+                    </form>
+            </div>
+            <div>
+              <h2> Comments </h2>
+                {comments}
+            </div>
+            <div>
+              <form className="row justify-content-md-center" action= {`places/${place._id}comment`} method="POST">
+                <div className= "form-group col-md-4 mt-2">
+                    <label htmlFor="author"> Name:</label>
+                    <input className="form-control" type="text" id="author" name="author" placeholder="Name Here!"/>
+                </div>
+                <div className= "form-group col-md-4 mt-2">
+                    <label htmlFor="stars"> Rating: </label>
+                    <input className="form-control" type="range" step="0.5" min="1" max="5" id="stars" name="stars"/>
+                </div>
+                <div className= "form-group col-md-4 mt-2">
+                    <label htmlFor="rant"> Is this a rant?</label>
+                    <br/>
+                    <input type="checkbox" id="rant" name="rant"/>
+                </div>
+                <div className= "form-group col-md-4 mt-2">
+                    <label htmlFor="content"> Comment: </label>
+                    <textarea className="form-control" type="text" id="content" name="content" placeholder="I love this place!"/>
+                    <button classname="btn btn-primary mt-2" type="submit"> Submit </button>
+                </div>
+              </form>
+            </div>
+      </main>
+    </Def>
+)}};
      
-
-
 
 // currently unrated no comments yet
 
-module.exports = show
+module.exports = show()
+
+
+//<h1> { data.place.name } </h1>
