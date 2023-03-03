@@ -1,6 +1,4 @@
 const router = require('express').Router()
-const places = require('../models/places.js')
-const React = require('react')
 const db = require("../models")
 
 router.get('/new', (req, res) => {
@@ -34,7 +32,7 @@ router.get('/', (req,res)=> {
     })
     .catch((err) => {
       console.log(err)
-      res.render("Error")
+      res.render("error404")
     })
 });
 
@@ -45,7 +43,7 @@ router.get("/:id/edit", (req, res) => {
   })
   .catch((err) => {
     console.log(err)
-    res.render("Error")
+    res.render("error404")
   })
 });
 
@@ -58,7 +56,7 @@ router.get('/:id', (req, res)=> {
   })
   .catch(err => {
       console.log('err', err)
-      res.render('error')
+      res.render('error404')
   })
 });
 
@@ -69,7 +67,7 @@ router.put('/:id', (req, res) => {
     })
     .catch((err) => {
       console.log(err)
-      res.render("Error")
+      res.render("error404")
     })
 });
 
@@ -80,7 +78,7 @@ router.delete('/:id', (req, res) => {
     })
     .catch((err) => {
       console.log(err)
-    res.render('Error')
+    res.render('error404')
   })
 });
 
@@ -108,35 +106,16 @@ router.post('/:id/comment', (req, res) => {
 router.delete('/:id/comment/:rantId', (req, res) => {
   db.Comment.findByIdAndDelete(req.params.rantId)
   .then(() =>{
-    res.redirect(`places/${req.params.id}`)
+    res.redirect(`/places/${req.params.id}`)
   })
   .catch((err) =>{
     console.log("PLACE", err)
-    res.render('Error')
+    res.render('error404')
   })
 });
 
 
 module.exports = router
-
-/*router.get('/places', (req,res) => {
-  res.render('/places')
-});
-                                   
-router.post('/:id/edit', (req, res) => {
-  res.render('GET /places/:id/rantId');
-});
-
-router.delete('/:id', (req, res) => {
-    db.Place.findByIdAndDelete(req.params.id)
-      .then(() => {
-      res.status(303).redirect('/places')
-      })
-      .catch((err) => {
-        console.log(err)
-      res.render('Error')
-    })
-});*/
 
 
 

@@ -25,16 +25,16 @@ function show ({place}) {
       { Math.round (averageRating) } stars 
       </h3>
     )
-    comments = place.comments.map( c=> {
+    comments = place.comments.map( (c, index)=> {
       return (
           <div key = { index }>
             <h2 className="rant mt-2">
               {c.rant ? 'Rant!' : 'Rave!'}
             </h2>
-            <h3> <stong> - {c.author} </stong> </h3>
+            <h3> <strong> - {c.author} </strong> </h3>
             <h4>{c.content}</h4>
             <h4>Rating: {c.stars}</h4>
-            <form action= {`/places/${place.id}/comment/${c.id}?_method=DELETE`} method="POST">
+            <form action= {`/places/${place._id}/comment/${c._id}?_method=DELETE`} method="POST">
               <input className="mb-2 btn btn-danger" type= "submit" value = "Delete"></input>
             </form>
           </div>
@@ -93,7 +93,5 @@ return (
 
 // currently unrated no comments yet
 
-module.exports = show()
+module.exports = show
 
-
-//<h1> { data.place.name } </h1>
