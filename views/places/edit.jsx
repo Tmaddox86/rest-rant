@@ -6,26 +6,26 @@ function edit_form ({place}) {
         <Def>
           <main>
             <h1>Edit Place</h1>
-                <form method="POST" action= {`/places/${place.id}?_method=PUT`}>
+                <form method="POST" action= {`/places/${place._id}?_method=PUT`}>
                     <div className="form-group">
                         <label htmlFor="name"> Name</label>
-                            <input className="form-control" id="name" name="name" required/>
+                            <input className="form-control" id="name" name="name" defaultValue={place.name} required/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="pic"> Picture</label>
-                            <input className="form-control" type="pic" id="pic" name="pic" />
+                            <input className="form-control" type="pic" id="pic" name="pic" defaultValue={place.pic} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="city"> City</label>
-                            <input className="form-control" type="city" id="city" name="city"/>
+                            <input className="form-control" type="city" id="city" name="city" defaultValue={place.city}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="state"> State</label>
-                            <input className="form-control" type="state" id="state" name="state"/>
+                            <input className="form-control" type="state" id="state" name="state" defaultValue={place.state}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="cuisines">Cuisines</label>
-                            <input className="form-control" type="cuisines" id="cuisines" name="cuisines" required/>
+                            <input className="form-control" type="cuisines" id="cuisines" name="cuisines" defaultValue={place.cuisines} required/>
                     </div>
                     <div className="form-group col-sm-4">
                         <label htmlFor= "founded">Founded Year</label>
@@ -34,10 +34,10 @@ function edit_form ({place}) {
                             className = "form-control"
                             id = "founded"
                             name = "founded"
-                            defaultvalue = {place.founded}
+                            defaultValue = {new Date().getFullYear()}
                         />
                     </div> 
-                        <input className="btn btn-primary" type="submit" value="Add Place"/>
+                        <input className="btn btn-primary" type="submit" value="Update Place"/>
                 </form>
           </main>
         </Def>

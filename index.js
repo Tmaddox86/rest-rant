@@ -1,26 +1,30 @@
-require('dotenv').config();
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const app = express();
-const methodOverride = require('method-override')
-const placesController = require('./controllers/places')
+const methodOverride = require("method-override");
+const placesController = require("./controllers/places");
 const PORT = process.env.PORT;
 
 // Express Settings
 //app.set('views', __dirname + '/views');
-app.set('view engine', 'jsx');
-app.engine('jsx', require('express-react-views').createEngine());
+app.set("view engine", "jsx");
+app.engine("jsx", require("express-react-views").createEngine());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride('_method'))
+app.use(methodOverride("_method"));
+
 // Controllers & Routes
-app.use("/places", placesController)
-app.get('/', (req, res) => {
-    res.render('home')
+app.use("/places", placesController);
+
+app.get("/", (req, res) => {
+  res.render("home");
 });
-app.get('*', (req, res) => {
-    res.render('error404')
+
+app.get("*", (req, res) => {
+  res.render("error404");
 });
 // Listen for Connections
-app.listen(PORT,() => {
+
+app.listen(PORT, () => {
   console.log(PORT);
 });
