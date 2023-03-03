@@ -1,4 +1,4 @@
-require('dotenv').config()
+//const require('dotenv').config()
 const mongoose = require('mongoose')
 const router = require('express').Router()
 const db = require('../models')

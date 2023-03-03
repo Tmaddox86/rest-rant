@@ -7,7 +7,7 @@ function home () {
           <main>
               <h1>HOME</h1>
                <div>
-                  <img src="C:\Users\TMadd\code\rest-rant\public\images\photo-1490474504059-bf2db5ab2348.webp" alt="rest-rant\public\images\photo-1490474504059-bf2db5ab2348.webp" />
+                  <img src= "images\chi'chi.webp" alt="images\chi'chi.webp" />
                     <div>           
                       Photo by <a href="https://unsplash.com/@cravethebenefits"> Brenda Godinez </a> On <a href="Unsplash.com">Unsplash</a>
                     </div> 

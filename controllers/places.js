@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const places = require('../models/places.js')
 const React = require('react')
-const db = reqiure("../models")
+const db = require("../models")
 
 router.get('/new', (req, res) => {
   res.render('places/new')
@@ -58,7 +58,7 @@ router.get('/:id', (req, res)=> {
   })
   .catch(err => {
       console.log('err', err)
-      res.render('error404')
+      res.render('error')
   })
 });
 
@@ -112,7 +112,7 @@ router.delete('/:id/comment/:rantId', (req, res) => {
   })
   .catch((err) =>{
     console.log("PLACE", err)
-    res.render('Error404')
+    res.render('Error')
   })
 });
 
