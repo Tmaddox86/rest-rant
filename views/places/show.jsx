@@ -1,16 +1,14 @@
 const React = require('react')
 const Def = require('../default')
 
-//<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
 function show ({place}) {
   let comments = (
     <h3 className="inactive"> No Comments Yet! </h3>
   )
   let rating = (
-    <h3 className="inactive"> No Rated Yet! </h3>
+    <h3 className="inactive"> Not Rated Yet! </h3>
   )
-  if (place.comments.length) {
+  if (place.comments.length) {  
     let sumRating = place.comments.reduce((tot,c) => {
       return tot + c.stars
     }, 0)
@@ -21,8 +19,7 @@ function show ({place}) {
     } 
     rating = (
       <h3> 
-      {stars} stars  
-      { Math.round (averageRating) } stars 
+      {stars}  
       </h3>
     )
     comments = place.comments.map( (c, index)=> {
@@ -38,9 +35,9 @@ function show ({place}) {
               <input className="mb-2 btn btn-danger" type= "submit" value = "Delete"></input>
             </form>
           </div>
-    )})
+    )})}
   
-return (     
+    return (     
     <Def>
         <main>
               <div className="row">
@@ -54,7 +51,7 @@ return (
                 <h3> {place.showEstablished()} </h3>
                 <h2>Rating</h2>
                   {rating}
-                <h4> Serving {data.place.cuisines} </h4>
+                <h4> Serving {place.cuisines} </h4>
                   <a href= {`/places/${place._id}/edit`} className= "btn btn-warning"> Edit </a>
                     <form method= "POST" action= {`/places/${place._id}?_method=DELETE`}>
                       <button type= "submit" className="btn btn-danger"> Delete </button>
@@ -65,7 +62,7 @@ return (
                 {comments}
             </div>
             <div>
-              <form className="row justify-content-md-center" action= {`places/${place._id}comment`} method="POST">
+              <form className="row justify-content-md-center" action={`/places/${place._id}/comment`} method="POST">
                 <div className= "form-group col-md-4 mt-2">
                     <label htmlFor="author"> Name:</label>
                     <input className="form-control" type="text" id="author" name="author" placeholder="Name Here!"/>
@@ -81,17 +78,17 @@ return (
                 </div>
                 <div className= "form-group col-md-4 mt-2">
                     <label htmlFor="content"> Comment: </label>
-                    <textarea className="form-control" type="text" id="content" name="content" placeholder="I love this place!"/>
-                    <button classname="btn btn-primary mt-2" type="submit"> Submit </button>
+                    <textarea className="form-control" type="text" id="content" name="content" placeholder="I love this place!"/> 
+                                     
                 </div>
+                <div className="col mt-2">
+                  <button className="btn btn-primary mt-2" type="submit"> Submit </button> 
+                </div>                 
               </form>
             </div>
       </main>
     </Def>
-)}};
+)}
      
-
-// currently unrated no comments yet
-
 module.exports = show
 
